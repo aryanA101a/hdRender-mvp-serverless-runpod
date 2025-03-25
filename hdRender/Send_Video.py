@@ -7,7 +7,7 @@ from email import encoders
 
 def send_email_with_video(email, video_path):
     Sender_Email = "viscommercecdn@gmail.com"
-    Sender_Password = "ehwcpeyvtawlgmiu"
+    Sender_Password = "vmtjuhjkolsbpdey"
     Receiver_Email = email
 
     # Compose the email message

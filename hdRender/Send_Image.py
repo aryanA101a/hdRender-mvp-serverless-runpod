@@ -6,7 +6,7 @@ from email.mime.image import MIMEImage
 
 def send_email_with_image(email, image_path):
     Sender_Email = "viscommercecdn@gmail.com"
-    Sender_Password = "valdzjcmddlqarob"
+    Sender_Password = "vmtjuhjkolsbpdey"
     Receiver_Email = email
 
     # Compose the email message

@@ -2,12 +2,32 @@ import bpy
 import sys
 import datetime
 import math
+import subprocess
+import os
 
-#Get Email
-email = sys.argv[5]
+# Get command line arguments
+print("Available arguments:", sys.argv)  # This helps debugging
 
-#Get Desired Resolution
-Resolution = sys.argv[6]
+# Check if we have enough arguments
+if len(sys.argv) > 5:  # At least need the email argument
+    email = sys.argv[5]
+    
+    # Set default values
+    resolution_integer = 1  # Default resolution
+    
+    # Get resolution if provided
+    if len(sys.argv) > 6:
+        Resolution = sys.argv[6]
+        try:
+            resolution_integer = int(Resolution)
+        except ValueError:
+            try:
+                resolution_integer = int(float(Resolution))
+            except ValueError:
+                print("Invalid resolution value, using default of 1")
+else:
+    print("Error: Email argument missing")
+    sys.exit(1)
 
 try:
     # Try to convert Resolution to an integer
@@ -408,8 +428,8 @@ view_layer.use_pass_emit = True
 
 # Render the image to a file
 current_datetime = datetime.datetime.now().strftime("_%Y/%d-%m/%H-%M_")
-output_filename = email.split('@')[0] + current_datetime + 'Render_Image.PNG'
+username = email.split('@')[0]
+output_filename = username + current_datetime + 'Render_Image.PNG'
 output_path = '/hdRender/Assets/Render_Images/' + output_filename
 bpy.context.scene.render.filepath = output_path
 bpy.ops.render.render(write_still=True)
-
